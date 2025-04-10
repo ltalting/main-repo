@@ -1,5 +1,15 @@
-import { URLSearchParams } from 'node:url'
-export default async function getUrl(url, queryParameters, logging){
+import { URLSearchParams } from 'node:url';
+
+// getUrl
+// Get the URL provided, with or without query parameters
+// Input:
+//  - url: the http/s address to be obtained
+//      Ex: "https://www.google.com"
+//  - queryParameters: object of query variables in key/value pairs
+//      Ex: {"parameter": "query"}
+//  - logging: true/false whether to log info messages or not
+//      Ex: true
+export async function getUrl(url, queryParameters, logging){
     let returnData = {};
     if (queryParameters == null){
         if (logging){
@@ -11,7 +21,13 @@ export default async function getUrl(url, queryParameters, logging){
             if (!response.ok) {
                 throw new Error("Failed to get URL");
             };
-            return response.json();
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                response = response.json();
+            } else {
+                response = response.text();
+            }
+            return response;
             })
         .then(data => {
             returnData = data;
@@ -29,7 +45,7 @@ export default async function getUrl(url, queryParameters, logging){
     return returnData;
 }
 
-async function getUrlWithQueryParameters(url, queryParameters, logging){
+export async function getUrlWithQueryParameters(url, queryParameters, logging){
     let returnData = {};
     let formedUrl = new URL(url);
     formedUrl.search = new URLSearchParams(queryParameters).toString();

@@ -1,0 +1,14 @@
+{
+  "name": "pokemon-api",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "For interacting with the api hosted at pokeapi.co",
+  "scripts": {},
+  "repository": {},
+  "author": "lalting",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ltalting/main-repo/issues"
+  },
+  "homepage": "https://github.com/ltalting/main-repo/javascript/pokemon-api"
+}
