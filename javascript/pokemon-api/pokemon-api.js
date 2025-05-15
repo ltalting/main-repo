@@ -4,7 +4,7 @@ import logger from '../libs/log/log.js';
 
 let writeLog = true;
 let baseUrl = "https://pokeapi.co/api/v2/";
-let pokemonName = "pikachu"; // no space, comma-separated list
+let pokemonName = "pikachu,mewtwo,blastoise"; // no space, comma-separated list
 let endpoints = await urlFunctions.getUrl(baseUrl, null, writeLog);
 let pokemonRaw = [];
 let pokemon = []
