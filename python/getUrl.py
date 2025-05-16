@@ -11,7 +11,7 @@ def get_url_content(url):
 
 # Example usage:
 # https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
-url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
-content = get_url_content(url)
-if content:
-    print(content)
+# url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+# content = get_url_content(url)
+# if content:
+#     print(content)

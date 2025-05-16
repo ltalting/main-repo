@@ -11,11 +11,24 @@ def get_pokemon_card_image(types=None,quality=None):
         "lightning",
         "psychic",
         "fighting",
-        "darkness",
+        "dark",
         "metal",
         "dragon",
         "colorless"
     ]
+
+    MAPPED_TYPES = {
+        "bug": "grass",
+        "normal": "colorless",
+        "poison": "dark",
+        "electric": "lightning",
+        "ground": "fighting",
+        "fairy": "psychic",
+        "rock": "fighting",
+        "ghost": "psychic",
+        "ice": "water",
+        "steel": "metal"
+    }
 
     if not types:
         types = ALLOWED_TYPES
@@ -28,6 +41,16 @@ def get_pokemon_card_image(types=None,quality=None):
     
     for type in types:
         if type in ALLOWED_TYPES:
+            url = f"https://pokecardmaker.net/_next/image?url=/assets/cards/baseSets/scarletAndViolet/supertypes/pokemon/types/{type}/subtypes/basic.png&w=1280&q={quality}"
+            try:
+                response = requests.get(url)
+                response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                return response.content
+            except requests.exceptions.RequestException as e:
+                print(f"Error fetching {url}: {e}")
+                return None
+        elif type in MAPPED_TYPES:
+            type = MAPPED_TYPES.get(type)
             url = f"https://pokecardmaker.net/_next/image?url=/assets/cards/baseSets/scarletAndViolet/supertypes/pokemon/types/{type}/subtypes/basic.png&w=1280&q={quality}"
             try:
                 response = requests.get(url)
