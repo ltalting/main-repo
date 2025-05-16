@@ -11,7 +11,6 @@ def main():
     index = 1000
     getPokemonByIdNameOutput = pokeApi.get_pokemon_by_id_name(index)
     card, sprite = getCardImages(cardWidth, cardHeight, spriteWidth, spriteHeight, getPokemonByIdNameOutput)
-    backdrop = pygame.image.load("./python/p6e09fd8.png").convert_alpha()
     clock = pygame.time.Clock()
     run = True
     while run:
@@ -36,6 +35,7 @@ def main():
         # Draw everything every frame
 
         # Apply the filter
+        backdrop = pygame.image.load("./python/p6e09fd8.png").convert_alpha()
         backdrop = pygame.transform.smoothscale(backdrop,(cardSpriteBoxWidth, cardSpriteBoxHeight))
         red_filter = pygame.Surface(backdrop.get_size(), pygame.SRCALPHA)
         red_filter.fill((255, 0, 0, 100))
